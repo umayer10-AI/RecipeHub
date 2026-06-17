@@ -4,6 +4,7 @@ import { addRecipes } from "@/lib/api/customer/recipe";
 import { authClient } from "@/lib/auth-client";
 import { uploadToImgbb } from "@/lib/Imgbb";
 import { useState } from "react";
+import toast from "react-hot-toast";
 
 const AddRecipePage = () => {
   const [loading, setLoading] = useState(false);
@@ -29,9 +30,18 @@ const AddRecipePage = () => {
       console.log(recipeData);
 
       const result = await addRecipes(recipeData)
-      console.log(result)
+    //   console.log(result)
+
       if(result.insertedId){
-        
+            toast.success('added recipe',
+                {
+                    style: {
+                    borderRadius: '10px',
+                    background: '#333',
+                    color: '#fff',
+                    },
+                }
+            );
       }
 
       e.target.reset();

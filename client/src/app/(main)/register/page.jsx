@@ -26,12 +26,28 @@ const RegisterPage = () => {
     });
 
     if(data){
-        alert('Data Successfully')
-        redirect('/')
-    }
-    else{
-        alert(error.message)
-    }
+            toast.success('Login Successfully',
+                {
+                    style: {
+                    borderRadius: '10px',
+                    background: '#333',
+                    color: '#fff',
+                    },
+                }
+            );
+            redirect('/')
+        }
+        else{
+            toast.error(`${error.message}`,
+                {
+                    style: {
+                    borderRadius: '10px',
+                    background: '#333',
+                    color: '#fff',
+                    },
+                }
+            );
+        }
 
   };
 

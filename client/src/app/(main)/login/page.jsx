@@ -2,6 +2,7 @@
 
 import { authClient } from "@/lib/auth-client";
 import Link from "next/link";
+import toast from "react-hot-toast";
 import { FcGoogle } from "react-icons/fc";
 
 const LoginPage = () => {
@@ -21,10 +22,26 @@ const LoginPage = () => {
         });
     
         if(data){
-            alert('Data Successfully')
+            toast.success('Login Successfully',
+                {
+                    style: {
+                    borderRadius: '10px',
+                    background: '#333',
+                    color: '#fff',
+                    },
+                }
+            );
         }
         else{
-            alert(error.message)
+            toast.error(`${error.message}`,
+                {
+                    style: {
+                    borderRadius: '10px',
+                    background: '#333',
+                    color: '#fff',
+                    },
+                }
+            );
         }
     
   };
