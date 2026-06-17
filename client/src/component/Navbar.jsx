@@ -118,7 +118,7 @@ const Navbar = () => {
             {open && (
               <div className="absolute right-0 mt-2 w-48 rounded-xl border border-gray-700 bg-[#111827] shadow-xl overflow-hidden">
                 <Link
-                  href="/dashboard"
+                  href={`/dashboard/${user?.role}`}
                   className="block px-4 py-3 text-white hover:bg-gray-800"
                   // onClick={() => setOpen(false)}
                 >
