@@ -1,7 +1,7 @@
 "use client";
-
-import { Separator } from "@heroui/react";
+import { authClient } from "@/lib/auth-client";
 import Link from "next/link";
+import { redirect } from "next/navigation";
 import { FcGoogle } from "react-icons/fc";
 
 const RegisterPage = () => {
@@ -11,19 +11,28 @@ const RegisterPage = () => {
     e.preventDefault();
 
     const formData = new FormData(e.target);
+    const registerData = Object.fromEntries(formData.entries());
 
-    const data = Object.fromEntries(formData.entries());
+    console.log(registerData);
 
-    console.log(data);
+    const { data, error } = await authClient.signUp.email({
+        name: registerData.name,
+        email: registerData.email,
+        password: registerData.password,
+        image: registerData.image,
+        role: registerData.role,
+        plan: 'free',
+        callbackURL: "/",
+    });
 
-    // Example API call
-    // await fetch("/api/register", {
-    //   method: "POST",
-    //   headers: {
-    //     "Content-Type": "application/json",
-    //   },
-    //   body: JSON.stringify(data),
-    // });
+    if(data){
+        alert('Data Successfully')
+        redirect('/')
+    }
+    else{
+        alert(error.message)
+    }
+
   };
 
   return (

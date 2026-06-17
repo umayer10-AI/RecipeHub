@@ -58,7 +58,7 @@ const Banner = () => {
             <img
                 src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=800&q=80"
                 alt="Food Banner"
-                className="rounded-3xl shadow-2xl h-110 w-110"
+                className="rounded-3xl shadow-2xl h-[60%] w-[60%]"
             />
           </div>
         </div>
