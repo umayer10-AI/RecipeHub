@@ -35,6 +35,12 @@ const RegisterPage = () => {
 
   };
 
+  const handleGoogle = async() => {
+    const data = await authClient.signIn.social({
+        provider: "google",
+    });
+  }
+
   return (
     <div className="flex items-center pt-10 pb-20 justify-center bg-[#0B1120] text-white px-4">
       <div className="w-full max-w-md rounded-2xl border border-white/10 bg-[#0F172A] p-6 shadow-xl">
@@ -101,7 +107,7 @@ const RegisterPage = () => {
         </div>
 
         {/* Google Button */}
-        <button className="w-full flex items-center justify-center gap-2 bg-white text-black rounded-xl border border-gray-700 py-2 hover:bg-gray-800 transition">
+        <button onClick={handleGoogle} className="w-full flex items-center justify-center gap-2 bg-white text-black rounded-xl border border-gray-700 py-2 hover:bg-gray-800 transition">
           <h2 className="text-xl"><FcGoogle /></h2>Continue with Google
         </button>
 

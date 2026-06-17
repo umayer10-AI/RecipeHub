@@ -102,7 +102,12 @@ const Navbar = () => {
               className="flex items-center gap-2 cursor-pointer border border-gray-500 py-1 px-3 rounded-2xl hover:bg-gray-800 transition"
             >
               <Avatar size="sm">
-                <Avatar.Image className="h-8 w-8 rounded-full" alt="John Doe" src={user?.image ? user?.image : "https://images.unsplash.com/photo-1781124771441-a66d8864724b"} />
+                <Avatar.Image 
+
+                className="h-8 w-8 rounded-full" 
+                referrerPolicy="no-referrer"
+                alt="John Doe" 
+                src={user?.image ? user?.image : "https://images.unsplash.com/photo-1781124771441-a66d8864724b"} />
                 <Avatar.Fallback>{user?.name?.charAt(0)}</Avatar.Fallback>
               </Avatar>
             <span className="hidden md:block text-white font-medium">
