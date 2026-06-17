@@ -1,5 +1,6 @@
 "use client";
 
+import { addRecipes } from "@/lib/api/customer/recipe";
 import { authClient } from "@/lib/auth-client";
 import { uploadToImgbb } from "@/lib/Imgbb";
 import { useState } from "react";
@@ -26,6 +27,12 @@ const AddRecipePage = () => {
       recipeData.userId = user?.id;
 
       console.log(recipeData);
+
+      const result = await addRecipes(recipeData)
+      console.log(result)
+      if(result.insertedId){
+        
+      }
 
       e.target.reset();
     } catch (error) {
