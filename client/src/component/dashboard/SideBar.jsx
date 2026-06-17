@@ -22,7 +22,9 @@ const Sidebar = () => {
   const { data: session } = authClient.useSession();
   const user = session?.user;
 
-  const menuItems = [
+  let menuItems = [];
+  if(user?.role === 'customer'){
+    menuItems = [
     {
       name: "Overview",
       href: "/dashboard/customer",
@@ -54,6 +56,41 @@ const Sidebar = () => {
       icon: User,
     },
   ];
+  }
+  if(user?.role === 'admin'){
+    menuItems = [
+    {
+      name: "Overview",
+      href: "/dashboard/admin",
+      icon: LayoutDashboard,
+    },
+    {
+      name: "Add Recipe",
+      href: "/dashboard/admin/add-recipe",
+      icon: PlusCircle,
+    },
+    {
+      name: "My Recipes",
+      href: "/dashboard/admin/my-recipes",
+      icon: BookOpen,
+    },
+    {
+      name: "Favourite",
+      href: "/dashboard/admin/favourite",
+      icon: Heart,
+    },
+    {
+      name: "Purchased",
+      href: "/dashboard/admin/purchased",
+      icon: ShoppingBag,
+    },
+    {
+      name: "Profile",
+      href: "/dashboard/admin/profile",
+      icon: User,
+    },
+  ];
+  }
 
   return (
     <aside className="flex h-screen w-72 flex-col border-r border-white/10 bg-[#0F172A] text-white">
