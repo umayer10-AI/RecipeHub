@@ -3,13 +3,18 @@
 import Link from "next/link";
 import { Avatar } from "@heroui/react";
 import { ChefHat } from "lucide-react";
-import { usePathname } from "next/navigation";
+import { redirect, usePathname } from "next/navigation";
 import { useState, useEffect, useRef } from "react";
+import { authClient } from "@/lib/auth-client";
 
 const Navbar = () => {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
   const dropdownRef = useRef(null);
+
+  const {data: session} = authClient.useSession()
+  const user = session?.user
+  console.log(user)
 
   useEffect(() => {
     const handleClickOutside = (e) => {
@@ -24,6 +29,11 @@ const Navbar = () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, []);
+
+  const handleSignout = async () => {
+    await authClient.signOut()
+    redirect('/')
+  }
 
   return (
     <nav className="sticky top-0 z-50 border-b border-white/10 bg-[#0B1120]/80 backdrop-blur-md">
@@ -75,25 +85,28 @@ const Navbar = () => {
 
         {/* Right Side */}
         <div className="flex items-center gap-4">
-          <Link
+          {
+            !user && <Link
             href="/login"
             className="rounded-xl bg-gradient-to-r from-cyan-500 to-blue-700 px-4 py-2 text-white"
           >
             Login
           </Link>
+          }
 
           {/* Custom Dropdown */}
-          <div className="relative" ref={dropdownRef}>
+          {
+            user && <div className="relative" ref={dropdownRef}>
             <div
               onClick={() => setOpen(!open)}
               className="flex items-center gap-2 cursor-pointer border border-gray-500 py-1 px-3 rounded-2xl hover:bg-gray-800 transition"
             >
               <Avatar size="sm">
-                <Avatar.Image className="h-8 w-8 rounded-full" alt="John Doe" src="https://images.unsplash.com/photo-1781124771441-a66d8864724b" />
-                <Avatar.Fallback>JD</Avatar.Fallback>
+                <Avatar.Image className="h-8 w-8 rounded-full" alt="John Doe" src={user?.image ? user?.image : "https://images.unsplash.com/photo-1781124771441-a66d8864724b"} />
+                <Avatar.Fallback>{user?.name?.charAt(0)}</Avatar.Fallback>
               </Avatar>
             <span className="hidden md:block text-white font-medium">
-              Umayer Ahmad
+              hey, {user?.name? user?.name.split(' ')[0] : "Jhon Doe"}
             </span>
             </div>
 
@@ -102,20 +115,21 @@ const Navbar = () => {
                 <Link
                   href="/dashboard"
                   className="block px-4 py-3 text-white hover:bg-gray-800"
-                  onClick={() => setOpen(false)}
+                  // onClick={() => setOpen(false)}
                 >
                   Dashboard
                 </Link>
 
                 <button
                   className="w-full text-left px-4 py-3 text-red-400 hover:bg-gray-800"
-                  onClick={() => setOpen(false)}
+                  onClick={handleSignout}
                 >
                   Sign Out
                 </button>
               </div>
             )}
           </div>
+          }
         </div>
       </div>
     </nav>

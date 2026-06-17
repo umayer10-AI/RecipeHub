@@ -1,5 +1,6 @@
 "use client";
 
+import { authClient } from "@/lib/auth-client";
 import Link from "next/link";
 import { FcGoogle } from "react-icons/fc";
 
@@ -12,7 +13,7 @@ const LoginPage = () => {
 
     console.log(logindata);
 
-    const { data, error } = await authClient.signUp.email({
+    const { data, error } = await authClient.signIn.email({
             email: logindata.email,
             password: logindata.password,
             rememberMe: true,
