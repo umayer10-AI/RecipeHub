@@ -14,12 +14,12 @@ export const auth = betterAuth({
     },
     user: {
     additionalFields: {
-        role: {
-            defaultValue: "customer"
-            } 
-        },
-        plan: {
-            defaultValue: "free",
+            role: {
+                defaultValue: "customer"
+            },
+            plan: {
+                defaultValue: "free",
+            },
         },
     },
     socialProviders: {
