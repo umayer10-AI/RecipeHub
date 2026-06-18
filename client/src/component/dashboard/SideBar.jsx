@@ -108,7 +108,8 @@ const Sidebar = () => {
             height={100}
             alt="logo"
             src={
-              user?.image ||
+              user?.image ?
+              user?.image :
               "https://images.unsplash.com/photo-1781124771441-a66d8864724b"
             }
             className="h-20 w-20 rounded-full object-cover border-2 border-slate-700"
@@ -120,13 +121,13 @@ const Sidebar = () => {
               {user?.name || "John Doe"}
             </h2>
 
-            {user?.role === "pro" ? (
+            {user?.plan === "pro" ? (
               <span className="flex items-center gap-1 rounded-full border border-amber-500/30 bg-amber-500/20 px-2 py-0.5 text-xs font-medium text-amber-400">
                 <Crown size={10} />
                 Premium
               </span>
             ) : (
-              <span className="rounded-full border border-slate-600 bg-slate-700/50 px-2 py-0.5 text-xs font-medium text-slate-300">
+              <span className="rounded-full border border-cyan-500/50 bg-cyan-500/30 px-2 py-0.5 text-xs font-medium text-cyan-400">
                 Free
               </span>
             )}
