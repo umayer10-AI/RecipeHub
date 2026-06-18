@@ -92,6 +92,11 @@ const Sidebar = () => {
   ];
   }
 
+  const handleSignout = async () => {
+      await authClient.signOut()
+      redirect('/')
+    }
+
   return (
     <aside className="flex h-screen w-72 flex-col border-r border-white/10 bg-[#0F172A] text-white">
       
@@ -168,7 +173,8 @@ const Sidebar = () => {
             <span>Back to Home</span>
           </Link>
 
-          <button className="flex w-full items-center gap-3 rounded-xl px-4 py-3 text-red-400 transition hover:bg-red-500/10">
+          <button onClick={handleSignout}
+          className="flex w-full items-center gap-3 rounded-xl px-4 py-3 text-red-400 transition hover:bg-red-500/10">
             <LogOut size={20} />
             <span>Sign Out</span>
           </button>

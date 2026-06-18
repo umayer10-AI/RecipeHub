@@ -25,8 +25,10 @@ const run = async() => {
       const db = client.db('recipeHub')
       const reciepeCollection = db.collection('recipes')
 
-      app.get('/api/recipes', async(req,res) => {
-        const result = await reciepeCollection.find().toArray()
+      app.get('/api/recipes/:id', async(req,res) => {
+        const {id} = req.params
+        // console.log(id)
+        const result = await reciepeCollection.find({userId: id}).toArray()
         res.json(result)
       })
 

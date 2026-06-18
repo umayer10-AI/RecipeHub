@@ -1,7 +1,7 @@
 import { getdata, mutation } from "../mutation"
 
-export const myRecipes = async() => {
-    return getdata(`/api/recipes`)
+export const myRecipes = async(id) => {
+    return getdata(`/api/recipes/${id}`)
 }
 
 export const addRecipes = async(v) => {
