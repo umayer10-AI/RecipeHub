@@ -11,8 +11,8 @@ import {
 } from "lucide-react";
 import SaveRecipe from "./SaveRecipe";
 
-const RecipeDetails = ({ recipe }) => {
-    
+const RecipeDetails = ({ recipe,filter }) => {
+
     // console.log(recipe)
 
   return (
@@ -57,7 +57,7 @@ const RecipeDetails = ({ recipe }) => {
               Save
             </button> */}
 
-            <SaveRecipe recipe={recipe}></SaveRecipe>
+            <SaveRecipe recipe={recipe} filter={filter}></SaveRecipe>
 
             <button className="flex items-center gap-1.5 px-3 py-2 rounded-lg bg-emerald-500 hover:bg-emerald-600 transition text-sm font-medium">
               <ShoppingCart size={16} />

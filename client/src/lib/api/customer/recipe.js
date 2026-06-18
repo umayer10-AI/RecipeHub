@@ -12,6 +12,10 @@ export const singleRecipes = async(id) => {
     return getdata(`/api/recipes/single/${id}`)
 }
 
+export const singleSavedRecipes = async(id) => {
+    return getdata(`/api/recipes/save/data/${id}`)
+}
+
 export const addRecipes = async(v) => {
     return mutation(v,`/api/recipes`,`POST`)
 }

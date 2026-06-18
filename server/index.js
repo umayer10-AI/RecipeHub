@@ -116,10 +116,15 @@ const run = async() => {
         res.json(result)
       })
 
+      app.get('/api/recipes/save/data/:id', async(req,res) => {
+        const {id} = req.params
+        const result = await saveCollection.find({userId: id}).toArray()
+        res.json(result)
+      })
+
       app.post('/api/recipes/save', async(req,res) => {
         const m = req.body
         const {saveId} = m
-        // console.log(m.saveId)
 
         const isExist = await saveCollection.findOne({saveId})
         if(isExist){
@@ -129,6 +134,8 @@ const run = async() => {
         const result = await saveCollection.insertOne(m)
         res.json(result)
       })
+
+      
 
       await client.db("admin").command({ ping: 1 });
       console.log("Pinged your deployment. You successfully connected to MongoDB!");
