@@ -20,6 +20,10 @@ export const updateRecipe = async(v,id) => {
     return mutation(v,`/api/recipes/edit/${id}`,'PATCH')
 }
 
+export const saveRecipeData = async(v) => {
+    return mutation(v,`/api/recipes/save`,'POST')
+}
+
 export const deleteRecipeButton = async(id) => {
     const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/api/recipes/delete/${id}`,{
         method: "DELETE"
