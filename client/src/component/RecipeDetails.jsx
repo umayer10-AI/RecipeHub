@@ -46,7 +46,7 @@ const RecipeDetails = ({ recipe }) => {
           <div className="flex flex-wrap gap-2">
             <button className="flex items-center gap-1.5 px-3 py-2 rounded-lg bg-rose-500 hover:bg-rose-600 transition text-sm font-medium">
               <Heart size={16} />
-              Like
+              Like 100
             </button>
 
             <button className="flex items-center gap-1.5 px-3 py-2 rounded-lg bg-blue-500 hover:bg-blue-600 transition text-sm font-medium">
