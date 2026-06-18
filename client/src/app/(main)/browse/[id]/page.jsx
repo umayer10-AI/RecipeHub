@@ -1,13 +1,16 @@
+import RecipeDetails from '@/component/RecipeDetails';
+import { singleRecipes } from '@/lib/api/customer/recipe';
 import React from 'react';
 
 const page = async ({params}) => {
 
     const {id} = await params
-    console.log(id)
+    const data = await singleRecipes(id)
+    console.log(data)
 
     return (
         <div>
-            dynamic
+            <RecipeDetails recipe={data}></RecipeDetails>
         </div>
     );
 };

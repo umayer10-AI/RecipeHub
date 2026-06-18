@@ -1,7 +1,7 @@
 "use client";
 import { addRecipes } from "@/lib/api/customer/recipe";
 import { authClient } from "@/lib/auth-client";
-import { uploadToImgbb } from "@/lib/Imgbb";
+import { uploadToCloudinary, uploadToImgbb } from "@/lib/Imgbb";
 import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 
@@ -32,7 +32,7 @@ const AddRecipePage = () => {
       const recipeData = Object.fromEntries(formData.entries());
 
       const imageFile = recipeData.image;
-      const imageUrl = await uploadToImgbb(imageFile);
+      const imageUrl = await uploadToCloudinary(imageFile);
 
       recipeData.image = imageUrl;
       recipeData.userId = user?.id;

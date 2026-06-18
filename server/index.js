@@ -72,8 +72,8 @@ const run = async() => {
       app.get('/api/recipes/single/:id', async(req,res) => {
         const {id} = req.params
         console.log(id)
-        // const result = await reciepeCollection.findOne({_id: new ObjectId(id)})
-        // res.json(result)
+        const result = await reciepeCollection.findOne({_id: new ObjectId(id)})
+        res.json(result)
       })
 
       app.post('/api/recipes', async(req,res) => {
