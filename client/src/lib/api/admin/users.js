@@ -1,3 +1,5 @@
+import { mutation } from "../mutation"
+
 const BaseUrl = process.env.NEXT_PUBLIC_SERVER_URL
 
 export const countUsers = async () => {
@@ -32,4 +34,8 @@ export const updatePremium = async (id) => {
 
         const data = await res.json();
         return data
+}
+
+export const addFeature = async (v) => {
+    return mutation(v,`/api/admin/recipe/feature`, 'POST')
 }

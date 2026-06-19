@@ -283,6 +283,12 @@ const run = async() => {
         const result = await reciepeCollection.deleteOne({_id: new ObjectId(id)})
         res.json(result)
       })
+
+      app.post('/api/admin/recipe/feature', async(req,res) => {
+        const m = req.body
+        const result = await featureCollection.insertOne(m)
+        res.json(result)
+      })
       
 
       await client.db("admin").command({ ping: 1 });
