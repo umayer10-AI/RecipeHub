@@ -28,6 +28,7 @@ const run = async() => {
       const userCollection = db.collection('user')
       const subcriptionCollection = db.collection('subscriptions')
       const reportCollection = db.collection('reports')
+      const featureCollection = db.collection('features')
 
       app.post('/subscription', async(req,res) => {
 
@@ -277,6 +278,11 @@ const run = async() => {
         res.send(result);
       });
 
+      app.delete('/api/admin/recipe/delete/:id', async(req,res) => {
+        const {id} = req.params
+        const result = await reciepeCollection.deleteOne({_id: new ObjectId(id)})
+        res.json(result)
+      })
       
 
       await client.db("admin").command({ ping: 1 });

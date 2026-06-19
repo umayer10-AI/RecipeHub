@@ -15,6 +15,13 @@ export const countPremium = async () => {
     return res.json()
 }
 
+export const adminDeleteRecipeItem = async (id) => {
+    const res = await fetch(`${BaseUrl}/api/admin/recipe/delete/${id}`,{
+        method: "DELETE"
+    })
+    return res.json()
+}
+
 export const updatePremium = async (id) => {
     const res = await fetch(
             `${process.env.NEXT_PUBLIC_SERVER_URL}/users/block/${id}`,

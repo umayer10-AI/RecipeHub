@@ -1,5 +1,6 @@
 import React from "react";
 import { Heart, Star } from "lucide-react";
+import AdminDeleteReciepe from "./AdminDeleteReciepe";
 
 const ManageRecipe = ({recipes}) => {
 
@@ -110,9 +111,7 @@ const ManageRecipe = ({recipes}) => {
                       </span>
                     </button>
 
-                    <button className="rounded-lg bg-red-500/10 px-3 py-2 text-sm font-medium text-red-400 hover:bg-red-500/20">
-                      Delete
-                    </button>
+                    <AdminDeleteReciepe recipe={recipe}></AdminDeleteReciepe>
                   </div>
                 </td>
               </tr>
