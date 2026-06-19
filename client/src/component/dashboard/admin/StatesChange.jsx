@@ -1,32 +1,21 @@
 "use client"
+import { updatePremium } from '@/lib/api/admin/users';
 import { redirect } from 'next/navigation';
 import React from 'react';
 import toast from 'react-hot-toast';
 
 const StatesChange = ({user}) => {
 
-    console.log(user)
+    // console.log(user)
 
     const handleBlockToggle = async (id) => {
-        try {
-            const res = await fetch(
-            `${process.env.NEXT_PUBLIC_SERVER_URL}/users/block/${id}`,
-            {
-                method: "PATCH",
-            }
-            );
-
-            const data = await res.json();
-            console.log(data)
+            const data = await updatePremium(id)
 
             if(data.modifiedCount > 0) {
                 toast.success('State Change')
                 // refetch()
                 redirect('/dashboard/admin/manage-user')
             }
-        } catch (error) {
-            console.log(error);
-        }
         };
     
     return (

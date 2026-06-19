@@ -1,5 +1,5 @@
 import React from "react";
-import { Shield, User, Crown, CheckCircle } from "lucide-react";
+import { Shield, User, Crown, CheckCircle, CircleOff, LoaderPinwheel } from "lucide-react";
 import StatesChange from "./StatesChange";
 
 const AdminManageUser = ({users}) => {
@@ -79,14 +79,15 @@ const AdminManageUser = ({users}) => {
 
                 {/* Plan */}
                 <td className="px-6 py-4">
-                  {user.plan === "premium" ? (
+                  {user.plan === "pro" ? (
                     <span className="inline-flex items-center gap-1 rounded-full bg-yellow-500/10 px-3 py-1 text-xs font-medium text-yellow-400">
                       <Crown size={14} />
                       Premium
                     </span>
                   ) : (
-                    <span className="text-slate-400 capitalize">
-                      {user.plan}
+                    <span className="inline-flex items-center gap-1 rounded-full bg-yellow-500/10 px-3 py-1 text-xs font-medium text-cyan-500">
+                      <LoaderPinwheel size={13}/>
+                      Free
                     </span>
                   )}
                 </td>
@@ -95,6 +96,7 @@ const AdminManageUser = ({users}) => {
                 <td className="px-6 py-4">
                     {user.isBlock ? (
                         <span className="inline-flex items-center gap-1 rounded-full bg-red-500/10 px-3 py-1 text-xs font-medium text-red-400">
+                        <CircleOff size={13} />
                         Blocked
                         </span>
                     ) : (
