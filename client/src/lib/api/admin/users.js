@@ -9,3 +9,8 @@ export const countRecepies = async () => {
     const res = await fetch(`${BaseUrl}/api/admin/recipes`)
     return res.json()
 }
+
+export const countPremium = async () => {
+    const res = await fetch(`${BaseUrl}/api/admin/premium`)
+    return res.json()
+}
