@@ -6,7 +6,7 @@ import React from 'react';
 import toast from 'react-hot-toast';
 import { FaBookmark } from 'react-icons/fa';
 
-const SaveRecipe = ({recipe,filter}) => {
+const SaveRecipe = ({recipe,filter1,filter2}) => {
 
     // console.log(recipe)
     const {
@@ -57,7 +57,7 @@ const SaveRecipe = ({recipe,filter}) => {
     return (
         <div>
             {
-                !filter ? <button onClick={handleData} className="flex items-center cursor-pointer gap-1.5 px-3 py-2 rounded-lg bg-blue-500 hover:bg-blue-600 transition text-sm font-medium">
+                !(filter1 && filter2) ? <button onClick={handleData} className="flex items-center cursor-pointer gap-1.5 px-3 py-2 rounded-lg bg-blue-500 hover:bg-blue-600 transition text-sm font-medium">
                 <Bookmark size={16} />
                 Save
                 </button>
