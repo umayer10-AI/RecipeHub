@@ -27,6 +27,7 @@ const run = async() => {
       const saveCollection = db.collection('saves')
       const userCollection = db.collection('user')
       const subcriptionCollection = db.collection('subscriptions')
+      const reportCollection = db.collection('reports')
 
       app.post('/subscription', async(req,res) => {
 
@@ -163,6 +164,47 @@ const run = async() => {
         const result = await saveCollection.insertOne(m)
         res.json(result)
       })
+
+      // app.post('/api/recipes/report', async(req,res) => {
+      //   const m = req.body
+      //   const reportData = {
+      //     ...m,
+      //     createdAt: new Date()
+      //   }
+      //   const result = await reportCollection.insertOne(reportData)
+      //   res.json(result)
+      // })
+
+      app.post("/api/recipes/report", async (req, res) => {
+        const reportData = req.body;
+
+        const isExist = await reportCollection.findOne({
+          recipeId: reportData.recipeId,
+          reportedBy: reportData.reportedBy,
+        });
+
+        if (isExist) {
+          return res.json({ alreadyReported: true });
+        }
+
+        const result = await reportCollection.insertOne({
+          ...reportData,
+          createdAt: new Date(),
+        });
+
+        res.json(result);
+      });
+
+      app.get("/api/recipes/report/status/:recipeId/:userId", async (req, res) => {
+        const { recipeId, userId } = req.params;
+
+        const isReported = await reportCollection.findOne({
+          recipeId,
+          reportedBy: userId,
+        });
+
+        res.json({ isReported: !!isReported });
+      });
 
       
 
