@@ -116,9 +116,15 @@ const run = async() => {
         res.json(result)
       })
 
+      // app.get('/api/recipes/save/data/:id', async(req,res) => {
+      //   const {id} = req.params
+      //   const result = await saveCollection.find({userId: id}).toArray()
+      //   res.json(result)
+      // })
+
       app.get('/api/recipes/save/data/:id', async(req,res) => {
         const {id} = req.params
-        const result = await saveCollection.find({userId: id}).toArray()
+        const result = await saveCollection.find({savedBy: id}).toArray()
         res.json(result)
       })
 
@@ -129,13 +135,29 @@ const run = async() => {
         res.json(result)
       })
 
+      // app.post('/api/recipes/save', async(req,res) => {
+      //   const m = req.body
+      //   const {saveId} = m
+
+      //   const isExist = await saveCollection.findOne({saveId})
+      //   if(isExist){
+      //     return res.json({message: 'Aready Exist'})
+      //   }
+
+      //   const result = await saveCollection.insertOne(m)
+      //   res.json(result)
+      // })
+
       app.post('/api/recipes/save', async(req,res) => {
         const m = req.body
-        const {saveId} = m
 
-        const isExist = await saveCollection.findOne({saveId})
+        const isExist = await saveCollection.findOne({
+          saveId: m.saveId,
+          savedBy: m.savedBy
+        })
+
         if(isExist){
-          return res.json({message: 'Aready Exist'})
+          return res.json({message: 'Already Exist'})
         }
 
         const result = await saveCollection.insertOne(m)

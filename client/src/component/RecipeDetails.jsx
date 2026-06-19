@@ -12,7 +12,7 @@ import {
 import SaveRecipe from "./SaveRecipe";
 import ReportModal from "./ReportModal";
 
-const RecipeDetails = ({ recipe,filter1,filter2 }) => {
+const RecipeDetails = ({ recipe,isSaved }) => {
 
     // console.log(recipe)
 
@@ -58,7 +58,7 @@ const RecipeDetails = ({ recipe,filter1,filter2 }) => {
               Save
             </button> */}
 
-            <SaveRecipe recipe={recipe} filter1={filter1} filter2={filter2}></SaveRecipe>
+            <SaveRecipe recipe={recipe} isSaved={isSaved}></SaveRecipe>
 
             <button className="flex items-center gap-1.5 px-3 py-2 rounded-lg bg-emerald-500 hover:bg-emerald-600 transition text-sm font-medium">
               <ShoppingCart size={16} />
