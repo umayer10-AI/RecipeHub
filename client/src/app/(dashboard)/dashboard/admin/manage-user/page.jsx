@@ -7,7 +7,7 @@ const page = async () => {
     const userCnt = await countUsers()
 
     return (
-        <div>
+        <div className='max-w-[90%] mx-auto mt-10'>
             <AdminManageUser users={userCnt}></AdminManageUser>
         </div>
     );
