@@ -11,7 +11,6 @@ const Page = async () => {
 
 
 
-  
 
   return (
     <div className="max-w-[90%] mx-auto py-10">
