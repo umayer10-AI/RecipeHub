@@ -336,6 +336,11 @@ const run = async() => {
         });
       });
 
+      app.get('/api/admin/recipe/feature', async(req,res) => {
+        const result = await featureCollection.find().toArray()
+        res.json(result)
+      })
+
       app.get('/api/recipes/report/list', async(req,res) => {
         const result = await reportCollection.find().toArray()
         res.json(result)
@@ -352,7 +357,7 @@ const run = async() => {
         const result = await reciepeCollection.deleteOne({_id: new ObjectId(id)})
         res.json(result)
       })
-      
+
       
 
       await client.db("admin").command({ ping: 1 });
