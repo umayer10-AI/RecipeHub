@@ -136,50 +136,91 @@ const run = async() => {
       //   res.json(result)
       // })
 
-      app.get('/api/recipes', async(req,res) => {
-        if(req.query){
-              const { search,category } = req.query;
+      app.get('/api/recipes', async (req, res) => {
+        const {search='', category='', page=1, limit = 8} = req.query;
 
-              const query = {};
-              if(category) {
-                query.category = category;
-              }
-              if(search) {
-                query.$or = [
-                        {
-                          recipeName: {
-                            $regex: search,
-                            $options: "i",
-                          },
-                        },
-                        {
-                          ingredients: {
-                            $regex: search,
-                            $options: "i",
-                            },
-                        },
-                    ];
-              }
+        const query = {};
 
-                // if(req.query.page){
-                //     const page = req.query.page
-                //     const perPage = req.query.perPage || 5
-                //     const skipItems = (page-1) * perPage
+        if(category){
+          query.category = category;
+        }
+        if(search) {
+          query.$or = [
+            {
+              recipeName: {
+                $regex: search,
+                $options: "i",
+              },
+            },
+            {
+              ingredients: {
+                $regex: search,
+                $options: "i",
+              },
+            },
+          ];
+        }
 
-                //     const jobs = await jobsCollection.find(query).skip(skipItems).limit(perPage).toArray();
-                //     return res.send(jobs);
-                // }
+        const currentPage = Number(page);
+        const perPage = Number(limit);
+        const skip = (currentPage-1) * perPage;
 
-              // console.log(query);
+        const totalRecipes = await reciepeCollection.countDocuments(query);
 
-              const result = await reciepeCollection.find(query).toArray();
-              res.send(result);
-          }
-          else{
-              const result = await reciepeCollection.find().toArray();
-              res.send(result);
-          }
-      })
+        const recipes = await reciepeCollection.find(query).skip(skip).limit(perPage).toArray();
+
+        res.json({
+          recipes,
+          totalPages: Math.ceil(totalRecipes / perPage),
+          currentPage,
+          totalRecipes,
+        });
+      });
+
+      // app.get('/api/recipes', async(req,res) => {
+      //   if(req.query){
+      //         const { search,category } = req.query;
+
+      //         const query = {};
+      //         if(category) {
+      //           query.category = category;
+      //         }
+      //         if(search) {
+      //           query.$or = [
+      //                   {
+      //                     recipeName: {
+      //                       $regex: search,
+      //                       $options: "i",
+      //                     },
+      //                   },
+      //                   {
+      //                     ingredients: {
+      //                       $regex: search,
+      //                       $options: "i",
+      //                       },
+      //                   },
+      //               ];
+      //         }
+
+      //           // if(req.query.page){
+      //           //     const page = req.query.page
+      //           //     const perPage = req.query.perPage || 5
+      //           //     const skipItems = (page-1) * perPage
+
+      //           //     const jobs = await jobsCollection.find(query).skip(skipItems).limit(perPage).toArray();
+      //           //     return res.send(jobs);
+      //           // }
+
+      //         // console.log(query);
+
+      //         const result = await reciepeCollection.find(query).toArray();
+      //         res.send(result);
+      //     }
+      //     else{
+      //         const result = await reciepeCollection.find().toArray();
+      //         res.send(result);
+      //     }
+      // })
 
       app.get('/api/recipes/single/:id', async(req,res) => {
         const {id} = req.params
