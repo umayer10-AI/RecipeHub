@@ -7,7 +7,6 @@ const Page = async () => {
 
 
 
-
   return (
     <div className="max-w-[90%] mx-auto py-10">
   <div className="flex items-center justify-between mb-6">
