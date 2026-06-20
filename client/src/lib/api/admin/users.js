@@ -17,6 +17,11 @@ export const countPremium = async () => {
     return res.json()
 }
 
+export const reportsListings = async () => {
+    const res = await fetch(`${BaseUrl}/api/recipes/report/list`)
+    return res.json()
+}
+
 export const adminDeleteRecipeItem = async (id) => {
     const res = await fetch(`${BaseUrl}/api/admin/recipe/delete/${id}`,{
         method: "DELETE"

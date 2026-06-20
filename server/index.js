@@ -289,6 +289,11 @@ const run = async() => {
         const result = await featureCollection.insertOne(m)
         res.json(result)
       })
+
+      app.get('/api/recipes/report/list', async(req,res) => {
+        const result = await reportCollection.find().toArray()
+        res.json(result)
+      })
       
 
       await client.db("admin").command({ ping: 1 });
