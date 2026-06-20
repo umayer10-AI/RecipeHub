@@ -128,6 +128,7 @@ const run = async() => {
         const result = await reciepeCollection.deleteOne(filter)
         res.json(result)
       })
+      
 
       app.get('/api/recipes', async (req, res) => {
         const {search='', category='', page=1, limit = 8} = req.query;

@@ -73,14 +73,14 @@ const Navbar = () => {
           </Link>
 
           <Link
-            href="/pricing"
+            href="/about"
             className={`rounded-xl px-4 py-1 ${
-              pathname === "/pricing"
+              pathname === "/about"
                 ? "bg-gradient-to-r from-cyan-500 to-blue-700 text-white"
                 : "text-gray-300 hover:text-sky-400"
             }`}
           >
-            Pricing
+            About
           </Link>
         </div>
 
