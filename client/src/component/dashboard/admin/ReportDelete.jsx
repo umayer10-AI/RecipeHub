@@ -6,7 +6,6 @@ import toast from 'react-hot-toast';
 
 const ReportDelete = ({report}) => {
 
-    console.log(report)
     const a = async() => {
         const data = await deleteReportButton(report._id)
         if(data.deletedCount > 0){

@@ -53,3 +53,12 @@ export const deleteReportButton = async(id) => {
     const data = await res.json()
     return data
 }
+
+export const deleteReportRecipeButton = async(id) => {
+    console.log(id)
+    const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/api/recipes/report/recipe/list/delete/${id}`,{
+        method: "DELETE"
+    })
+    const data = await res.json()
+    return data
+}
