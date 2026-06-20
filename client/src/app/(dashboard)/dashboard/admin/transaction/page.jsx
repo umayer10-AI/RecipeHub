@@ -4,6 +4,7 @@ import React from "react";
 const Page = async () => {
 
   const data = await getAllPayments()
+
   
 
   return (
