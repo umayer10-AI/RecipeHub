@@ -14,7 +14,7 @@ export async function POST(request) {
     const recipeName = formData.get('recipeName')
     const userId = formData.get('userId')
     const price = Number(4.99)
-    const recipeId = formData.get('_id')
+    const recipeId = formData.get('recipeId')
 
     // const PRICE_ID = 'price_1TjXNgABZfK1ETNERb0oFT7h'
 

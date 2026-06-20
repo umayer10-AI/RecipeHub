@@ -1,4 +1,4 @@
-import { subscription } from '@/lib/api/customer/subscription'
+import { payments } from '@/lib/api/customer/subscription'
 import { stripe } from '@/lib/stripe'
 import { redirect } from 'next/navigation'
 import { CheckCircle2, Mail, ArrowRight } from 'lucide-react'
@@ -29,7 +29,7 @@ export default async function Success({ searchParams }) {
 
   if(status === 'complete'){
 
-    
+    const result = await payments({ ...metadata, session_id })
 
     return (
       <div className="min-h-screen flex items-center justify-center bg-linear-to-br from-emerald-50 via-white to-emerald-100 px-4">
@@ -65,7 +65,7 @@ export default async function Success({ searchParams }) {
 
           {/* Button */}
           <Link
-            href={`/dashboard/${user?.role}`}
+            href={`/browse`}
             className="mt-6 inline-flex items-center justify-center gap-2 w-full rounded-lg bg-emerald-600 py-2.5 text-white font-medium hover:bg-emerald-700 transition"
           >
             Go to Dashboard

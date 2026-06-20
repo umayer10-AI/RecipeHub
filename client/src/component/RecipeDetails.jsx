@@ -65,6 +65,7 @@ const RecipeDetails = ({ recipe,isSaved }) => {
 
             <form action={'/api/payment'} method="POST">
               <input type="hidden" name="userId" value={recipe?.userId} />
+              <input type="hidden" name="recipeId" value={recipe?._id} />
               <input type="hidden" name="price" value={4.99} />
               <input type="hidden" name="recipeName" value={recipe.recipeName} />
 

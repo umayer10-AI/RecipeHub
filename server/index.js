@@ -62,29 +62,22 @@ const run = async() => {
 
       app.post('/user/payments', async(req,res) => {
 
-        const {session_id: sessionId, priceId, userId, userEmail} = req.body
+        const {session_id: sessionId, price, userId, userEmail,recipeName, recipeId} = req.body
 
-        // console.log("my id",sessionId,
-        //   priceId,
-        //   userId,
-        //   userEmail)
-
-        const isExist = await subcriptionCollection.findOne({sessionId})
+        const isExist = await paymentCollection.findOne({sessionId})
         if(isExist){
           return res.json({message: 'Aready Exist'})
         }
 
-        await subcriptionCollection.insertOne({
+        await paymentCollection.insertOne({
           sessionId,
-          priceId,
+          price,
           userId,
           userEmail,
+          recipeName,
+          recipeId,
+          paidAt: new Date(),
         })
-
-        await userCollection.updateOne(
-          {_id: new ObjectId(userId)},
-          { $set: { plan: 'pro'}}
-        )
 
         res.json({message: 'Payment Successfull'})
       })
@@ -92,7 +85,6 @@ const run = async() => {
 
       app.get('/api/recipes/:id', async(req,res) => {
         const {id} = req.params
-        // console.log(id)
         const result = await reciepeCollection.find({userId: id}).toArray()
         res.json(result)
       })
