@@ -27,10 +27,40 @@ const run = async() => {
       const saveCollection = db.collection('saves')
       const userCollection = db.collection('user')
       const subcriptionCollection = db.collection('subscriptions')
+      const paymentCollection = db.collection('payments')
       const reportCollection = db.collection('reports')
       const featureCollection = db.collection('features')
 
       app.post('/subscription', async(req,res) => {
+
+        const {session_id: sessionId, priceId, userId, userEmail} = req.body
+
+        // console.log("my id",sessionId,
+        //   priceId,
+        //   userId,
+        //   userEmail)
+
+        const isExist = await subcriptionCollection.findOne({sessionId})
+        if(isExist){
+          return res.json({message: 'Aready Exist'})
+        }
+
+        await subcriptionCollection.insertOne({
+          sessionId,
+          priceId,
+          userId,
+          userEmail,
+        })
+
+        await userCollection.updateOne(
+          {_id: new ObjectId(userId)},
+          { $set: { plan: 'pro'}}
+        )
+
+        res.json({message: 'Payment Successfull'})
+      })
+
+      app.post('/user/payments', async(req,res) => {
 
         const {session_id: sessionId, priceId, userId, userEmail} = req.body
 
@@ -128,7 +158,7 @@ const run = async() => {
         const result = await reciepeCollection.deleteOne(filter)
         res.json(result)
       })
-      
+
 
       app.get('/api/recipes', async (req, res) => {
         const {search='', category='', page=1, limit = 8} = req.query;
