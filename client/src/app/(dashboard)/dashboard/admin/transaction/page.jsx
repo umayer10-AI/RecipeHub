@@ -5,6 +5,7 @@ const Page = async () => {
 
   const data = await getAllPayments()
 
+
   
 
   return (
