@@ -4,6 +4,7 @@ import React from "react";
 const Page = async () => {
 
   const data = await getAllPayments()
+  
 
   return (
     <div className="max-w-[90%] mx-auto py-10">
