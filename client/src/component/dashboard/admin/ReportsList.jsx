@@ -1,9 +1,10 @@
 import React from "react";
+import ReportDelete from "./ReportDelete";
 
 
 const ReportsList = ({reports}) => {
   return (
-    <div className="p-6">
+    <div className="">
       <div className="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 overflow-hidden">
         
         {/* Header */}
@@ -37,7 +38,6 @@ const ReportsList = ({reports}) => {
               <tr className="text-left">
                 <th className="px-6 py-4">Recipe ID</th>
                 <th className="px-6 py-4">Recipe Title</th>
-                <th className="px-6 py-4">Reporter</th>
                 <th className="px-6 py-4">Reason</th>
                 <th className="px-6 py-4">Reported</th>
                 <th className="px-6 py-4">Actions</th>
@@ -59,10 +59,6 @@ const ReportsList = ({reports}) => {
                   </td>
 
                   <td className="px-6 py-4">
-                    {report.reportedByName}
-                  </td>
-
-                  <td className="px-6 py-4">
                     <span className="px-3 py-1 rounded-full text-xs bg-yellow-500/20 text-yellow-500 border-orange-200">
                       {report.reason}
                     </span>
@@ -78,9 +74,10 @@ const ReportsList = ({reports}) => {
                         Remove Recipe
                       </button>
 
-                      <button className="px-4 py-2 rounded-lg border bg-white text-black font-semibold hover:bg-slate-100 dark:hover:bg-slate-800 transition">
+                      {/* <button className="px-4 py-2 rounded-lg border bg-white text-black font-semibold hover:bg-slate-100 dark:hover:bg-slate-800 transition">
                         Dismiss
-                      </button>
+                      </button> */}
+                      <ReportDelete report={report}></ReportDelete>
                     </div>
                   </td>
                 </tr>

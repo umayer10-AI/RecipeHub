@@ -294,6 +294,12 @@ const run = async() => {
         const result = await reportCollection.find().toArray()
         res.json(result)
       })
+
+      app.delete('/api/recipes/report/list/delete/:id', async(req,res) => {
+        const {id} = req.params
+        const result = await reportCollection.deleteOne({_id: new ObjectId(id)})
+        res.json(result)
+      })
       
 
       await client.db("admin").command({ ping: 1 });
