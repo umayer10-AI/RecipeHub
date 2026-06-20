@@ -170,7 +170,7 @@ const run = async() => {
                 //     return res.send(jobs);
                 // }
 
-              console.log(query);
+              // console.log(query);
 
               const result = await reciepeCollection.find(query).toArray();
               res.send(result);

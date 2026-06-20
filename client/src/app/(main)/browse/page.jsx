@@ -6,7 +6,6 @@ const page = async ({searchParams}) => {
     const query = await searchParams
     const search = query.search || '';
     const category = query.category || '';
-    // console.log(search, category);
 
     return (
         <div>
