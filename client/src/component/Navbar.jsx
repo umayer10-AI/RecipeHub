@@ -54,22 +54,22 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="sticky top-0 z-50 border-b border-black/10 dark:border-white/10 bg-slate-50/80 dark:bg-[#0B1120]/80 backdrop-blur-md">
+    <nav className="sticky top-0 z-50 border-b border-white/10 bg-[#0B1120] dark:bg-[#0B1120]/80 backdrop-blur-md">
       <div className="mx-auto flex h-16 max-w-[80%] items-center justify-between px-4">
         {/* Logo */}
         <Link href="/" className="flex items-center gap-2">
           <ChefHat className="h-7 w-7 text-sky-400" />
-          <span className="text-xl font-bold text-black dark:text-white">RecipeHub</span>
+          <span className="text-xl font-bold text-white">RecipeHub</span>
         </Link>
 
         {/* Center Menu */}
-        <div className="hidden md:flex items-center font-semibold gap-4 text-sm">
+        <div className="hidden md:flex items-center gap-4 text-sm">
           <Link
             href="/"
-            className={`rounded-xl px-3 py-1.5 ${
+            className={`rounded-xl px-4 py-2 ${
               pathname === "/"
                 ? "bg-linear-to-r from-cyan-500 to-blue-700 text-white"
-                : " text-black dark:text-gray-300 hover:text-sky-400"
+                : "text-gray-300 hover:text-sky-400"
             }`}
           >
             Home
@@ -77,10 +77,10 @@ const Navbar = () => {
 
           <Link
             href="/browse"
-            className={`rounded-xl px-3 py-1.5 ${
+            className={`rounded-xl px-4 py-2 ${
               pathname === "/browse"
                 ? "bg-linear-to-r from-cyan-500 to-blue-700 text-white"
-                : " text-black dark:text-gray-300 hover:text-sky-400"
+                : "text-gray-300 hover:text-sky-400"
             }`}
           >
             Browse
@@ -88,10 +88,10 @@ const Navbar = () => {
 
           <Link
             href="/about"
-            className={`rounded-xl px-3 py-1.5 ${
+            className={`rounded-xl px-4 py-2 ${
               pathname === "/about"
-                ? "bg-linear-to-r from-cyan-500 to-blue-700 text-white"
-                : "text-black dark:text-gray-300 hover:text-sky-400"
+                ? "bg-gradient-to-r from-cyan-500 to-blue-700 text-white"
+                : "text-gray-300 hover:text-sky-400"
             }`}
           >
             About
@@ -103,7 +103,7 @@ const Navbar = () => {
           {/* Theme Toggle */}
           <button
             onClick={a}
-            className="flex h-8 w-8 items-center justify-center cursor-pointer rounded-full bg-slate-200 dark:bg-slate-800 text-cyan-500 dark:text-cyan-400 dark:hover:bg-gray-800 transition"
+            className="flex h-8 w-8 items-center justify-center cursor-pointer rounded-full bg-slate-800 text-cyan-400 hover:bg-gray-800 transition"
           >
             {darkMode ? <Sun size={18} /> : <Moon size={20} />}
           </button>
@@ -121,7 +121,7 @@ const Navbar = () => {
             <div className="relative" ref={dropdownRef}>
               <div
                 onClick={() => setOpen(!open)}
-                className="flex items-center gap-2 cursor-pointer border-2 border-blue-500 py-1 px-3 rounded-full hover:bg-gray-300 dark:hover:bg-gray-800 transition"
+                className="flex items-center gap-2 cursor-pointer border-2 border-blue-500 py-1 px-3 rounded-full hover:bg-gray-800 transition"
               >
                 <Avatar size="sm">
                   <Avatar.Image
@@ -139,7 +139,7 @@ const Navbar = () => {
                   </Avatar.Fallback>
                 </Avatar>
 
-                <span className="hidden md:block text-black dark:text-white font-medium">
+                <span className="hidden md:block text-white font-medium">
                   {user?.name ? user.name.split(" ")[0] : "John"}
                 </span>
 
