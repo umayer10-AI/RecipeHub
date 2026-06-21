@@ -18,6 +18,12 @@ const client = new MongoClient(uri, {
   }
 });
 
+const verifyJWT = (req, res, next) => {
+  const header = req.headers.authorization;
+  console.log(header)
+  next()
+}
+
 const run = async() => {
     try {
       await client.connect();
