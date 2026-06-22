@@ -66,7 +66,6 @@ const Banner = () => {
           </div>
         </div>
 
-        {/* Right Image */}
         <div className="hidden flex-1 text-right md:block">
           <div className="flex justify-center">
             <img
