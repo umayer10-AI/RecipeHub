@@ -11,7 +11,7 @@ const Banner = () => {
       <div className="pointer-events-none absolute bottom-0 left-0 h-96 w-96 rounded-full bg-blue-400/20 blur-3xl dark:bg-blue-600/20"></div>
 
       <div className="relative z-10 mx-auto flex min-h-[80vh] max-w-[80%] items-center px-4">
-        {/* Left Content */}
+
         <div className="max-w-2xl 2xl:flex-1">
           <h1 className="text-4xl font-bold leading-tight md:text-6xl">
             Discover & Share{" "}
