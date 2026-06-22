@@ -5,7 +5,7 @@ import Link from "next/link";
 const Banner = () => {
   return (
     <section className="relative overflow-hidden bg-white text-gray-900 dark:bg-[#0B1120] dark:text-white">
-      {/* Glow Background */}
+
       <div className="pointer-events-none absolute -top-40 right-0 h-96 w-96 rounded-full bg-sky-400/20 blur-3xl dark:bg-sky-500/20"></div>
 
       <div className="pointer-events-none absolute bottom-0 left-0 h-96 w-96 rounded-full bg-blue-400/20 blur-3xl dark:bg-blue-600/20"></div>
