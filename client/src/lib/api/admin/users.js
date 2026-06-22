@@ -56,20 +56,25 @@ export const updatePremium = async (id,token) => {
 }
 
 export const addFeature = async (v,token) => {
-    return mutation(v,`/api/admin/recipe/feature`, 'POST', token)
+    return mutation(v,`/api/admin/recipe/feature`, 'POST', token,{
+        cache: 'no-store'
+    })
 }
 
 export const getFeature = async () => {
-    const res = await fetch(`${BaseUrl}/api/admin/recipe/feature`)
+    const res = await fetch(`${BaseUrl}/api/admin/recipe/feature`,{
+        cache: 'no-store'
+    })
     return res.json()
 }
 
 export const deleteReportButton = async(id,token) => {
-    console.log(id)
+    
     const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/api/recipes/report/list/delete/${id}`,{
         method: "DELETE",
         headers: {
-            authorization: `Bearer ${token?.token}`
+            authorization: `Bearer ${token?.token}`,
+            cache: 'no-store'
         }
     })
     const data = await res.json()
@@ -81,7 +86,8 @@ export const deleteReportRecipeButton = async(id,token) => {
     const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/api/recipes/report/recipe/list/delete/${id}`,{
         method: "DELETE",
         headers: {
-            authorization: `Bearer ${token?.token}`
+            authorization: `Bearer ${token?.token}`,
+            cache: 'no-store'
         }
     })
     const data = await res.json()
