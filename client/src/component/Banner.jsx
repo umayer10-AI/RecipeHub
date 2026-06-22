@@ -41,7 +41,6 @@ const Banner = () => {
             </Link>
           </div>
 
-          {/* Stats */}
           <div className="mt-10 flex gap-8 text-sm text-black dark:text-gray-400">
             <div>
               <p className="text-2xl font-bold text-black dark:text-white">
